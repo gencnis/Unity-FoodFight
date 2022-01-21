@@ -11,6 +11,9 @@ public class GameBehavior : MonoBehaviour
     public bool showWinScreen = false;
 
     private int _snickersCollected;
+
+
+
     /// <summary>
     /// Access variable for the number of snickers bar the player has collected
     /// </summary>
