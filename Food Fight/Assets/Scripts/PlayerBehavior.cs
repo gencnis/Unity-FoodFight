@@ -44,11 +44,6 @@ public class PlayerBehavior : MonoBehaviour
     void Update()
     {
 
-        // This if block is just for testing purposes
-        if (Input.GetMouseButtonDown(0))
-        {
-            GainPoint();
-        }
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             // 3
