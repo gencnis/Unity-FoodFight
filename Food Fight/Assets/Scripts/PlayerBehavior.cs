@@ -11,8 +11,8 @@ public class PlayerBehavior : MonoBehaviour
     public Transform playerTransform;
 
 
-    public float moveSpeed = 10f;
-    public float rotateSpeed = 75f;
+    public float moveSpeed = 7f;
+    public float rotateSpeed = 90f;
     public float jumpVelocity = 10f;
     private float vInput;
     private float hInput;
@@ -52,11 +52,11 @@ public class PlayerBehavior : MonoBehaviour
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             // 3
-            _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            _rb.AddForce(Vector3.up * jumpVelocity * (playerTransform.localScale.x / 2), ForceMode.Impulse);
         }
 
         //Vertical input
-        vInput = Input.GetAxis("Vertical") * moveSpeed;
+        vInput = Input.GetAxis("Vertical") * moveSpeed * playerTransform.localScale.x;
         //Horizontal input
         hInput = Input.GetAxis("Horizontal") * rotateSpeed;
     }
@@ -98,7 +98,8 @@ public class PlayerBehavior : MonoBehaviour
     private void GainPoint()
     {
         playerTransform.localScale = playerTransform.localScale + Vector3.one;
-        gameBehavior.SnickersCollected = gameBehavior.SnickersCollected + 1;    
+        gameBehavior.SnickersCollected = gameBehavior.SnickersCollected + 1;
+        gameBehavior.PointCollected();
     }
 
     // On collision store info of collision

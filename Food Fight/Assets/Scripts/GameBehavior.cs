@@ -12,6 +12,7 @@ public class GameBehavior : MonoBehaviour
 
     private int _snickersCollected;
 
+    public WallScript wall;
 
 
     /// <summary>
@@ -37,12 +38,17 @@ public class GameBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        wall = GameObject.Find("DreadedWallOff").GetComponent<WallScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    //Whenever a player collects a snack, this method is called
+    public void PointCollected()
+    {
+        wall.HauntThePlayer();
     }
 }
