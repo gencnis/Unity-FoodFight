@@ -9,6 +9,7 @@ public class WallScript : MonoBehaviour
     public Transform wallTransform;
     public Vector3 locationSetter;
     public Collider[] walls;
+    public Renderer[] colors;
     public Collider Egress;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class WallScript : MonoBehaviour
         locationSetter = new Vector3(0f, 0f, 0f);
         //Get the colliders from the walls from our obstruction
         walls = GetComponentsInChildren<Collider>();
+        colors = GetComponentsInChildren<Renderer>();
         Egress = walls[Random.Range(0, 3)];
         Egress.isTrigger = true;
         //HauntThePlayer();
@@ -30,6 +32,10 @@ public class WallScript : MonoBehaviour
     }
     public void setExit()
     {
+        foreach (Renderer r in colors)
+        {
+            r.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f, 1f, 1f);
+        }
         Egress.isTrigger = false;
         Egress = walls[Random.Range(0, 3)];
         Egress.isTrigger = true;
